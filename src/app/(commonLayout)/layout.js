@@ -2,6 +2,7 @@ import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
+import NextThemeProvider from '@/providers/NextThemeProvider'
 
 // Body & UI font
 const inter = Inter({
@@ -25,13 +26,15 @@ export default function RootLayout({ children }) {
 	return (
 		<html
 			lang='en'
-			suppressHydrationWarning
+	   suppressHydrationWarning
 			className={`${inter.variable} ${playfair.variable} h-screen antialiased`}
 		>
 			<body className='min-h-full flex flex-col font-(--font-inter)'>
-         <Navbar/>
-				<main className='min-h-screen'>{children}</main>
-        <Footer/>
+        <NextThemeProvider>
+             <Navbar/>
+			  	 <main className='min-h-screen'>{children}</main>
+           <Footer/>
+        </NextThemeProvider>
 			</body>
 		</html>
 	)

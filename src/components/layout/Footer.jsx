@@ -1,8 +1,8 @@
-"use client";
+
 
 import Link from "next/link";
 import { 
-  Globe, 
+  GraduationCap, 
   Mail, 
   Phone, 
   MapPin 
@@ -26,8 +26,8 @@ export default function Footer() {
           {/* Brand Info */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-2">
-              <div className="bg-gradient-to-tr from-blue-600 to-teal-400 p-2 rounded-full text-white shadow-md">
-                <Globe className="w-5 h-5" />
+              <div className="bg-linear-to-tr from-blue-600 to-teal-400 p-2 rounded-full text-white shadow-md">
+                <GraduationCap className="w-5 h-5" />
               </div>
               <span className="font-extrabold text-xl tracking-tight text-white">
                 Skill<span className="text-blue-500">Sphere</span>
@@ -86,7 +86,6 @@ export default function Footer() {
               Stay connected with our learning community on social media.
             </p>
             
-       
             <div className="flex items-center gap-3">
               <a
                 href="https://github.com"
