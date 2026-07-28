@@ -16,7 +16,7 @@ export const staticNewCourses = [
     isFree: false,
     category: "Development",
     level: "Intermediate",
-    // 💡 High-Quality Code & Modern Tech Stack Visual
+    //  High-Quality Code & Modern Tech Stack Visual
     image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop",
     badge: {
       text: "New Release",
@@ -41,7 +41,7 @@ export const staticNewCourses = [
     isFree: false,
     category: "Mobile Dev",
     level: "All Levels",
-    // 💡 Clean Smartphone & App Interface Mockup Visual
+    //  Clean Smartphone & App Interface Mockup Visual
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
     badge: {
       text: "Trending",
@@ -66,7 +66,7 @@ export const staticNewCourses = [
     isFree: false,
     category: "AI & Data",
     level: "Advanced",
-    // 💡 AI Neural Circuit Graphic Art
+    //  AI Neural Circuit Graphic Art
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
     badge: {
       text: "Hot Topic",

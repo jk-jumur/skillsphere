@@ -55,7 +55,7 @@ const NewReleases = () => {
                 />
 
                 {/* Dark Vignette Overlay for Image Text Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-80" />
 
                 {/* Badge */}
                 <div
