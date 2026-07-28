@@ -1,0 +1,77 @@
+export const staticNewCourses = [
+  {
+    id: "new-101",
+    title: "Next.js 15 & React Server Components Masterclass",
+    instructor: {
+      name: "Andrew Mead",
+      role: "Full Stack Expert",
+      avatar: "https://i.pravatar.cc/150?u=andrew",
+    },
+    lessons: 28,
+    duration: "18h 30m",
+    rating: 4.9,
+    reviewsCount: 1420,
+    price: 49.99,
+    currency: "$",
+    isFree: false,
+    category: "Development",
+    level: "Intermediate",
+    // 💡 High-Quality Code & Modern Tech Stack Visual
+    image: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1000&auto=format&fit=crop",
+    badge: {
+      text: "New Release",
+      variant: "primary",
+      colorClass: "bg-blue-600 text-white dark:bg-cyan-500 dark:text-zinc-950",
+    },
+  },
+  {
+    id: "new-102",
+    title: "Cross-Platform Mobile App Dev with React Native & Expo",
+    instructor: {
+      name: "Marcus Vance",
+      role: "Senior Mobile Architect",
+      avatar: "https://i.pravatar.cc/150?u=marcus",
+    },
+    lessons: 40,
+    duration: "26h 40m",
+    rating: 4.8,
+    reviewsCount: 1120,
+    price: 39.99,
+    currency: "$",
+    isFree: false,
+    category: "Mobile Dev",
+    level: "All Levels",
+    // 💡 Clean Smartphone & App Interface Mockup Visual
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1000&auto=format&fit=crop",
+    badge: {
+      text: "Trending",
+      variant: "warning",
+      colorClass: "bg-amber-500 text-slate-950 dark:bg-amber-400 dark:text-zinc-950",
+    },
+  },
+  {
+    id: "new-103",
+    title: "Generative AI & LLM Application Development with Python",
+    instructor: {
+      name: "Dr. Alex Rivera",
+      role: "AI Scientist",
+      avatar: "https://i.pravatar.cc/150?u=alex",
+    },
+    lessons: 22,
+    duration: "14h 45m",
+    rating: 5.0,
+    reviewsCount: 2150,
+    price: 59.99,
+    currency: "$",
+    isFree: false,
+    category: "AI & Data",
+    level: "Advanced",
+    // 💡 AI Neural Circuit Graphic Art
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1000&auto=format&fit=crop",
+    badge: {
+      text: "Hot Topic",
+      variant: "danger",
+      colorClass: "bg-rose-600 text-white dark:bg-rose-500 dark:text-white",
+    },
+  },
+];
