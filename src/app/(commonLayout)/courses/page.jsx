@@ -1,6 +1,7 @@
 
 
-const AllCousePage = () => {
+const AllCoursesPage = () => {
+     
     return (
         <div>
              all course page
@@ -8,4 +9,4 @@ const AllCousePage = () => {
     );
 };
 
-export default AllCousePage;
+export default AllCoursesPage;

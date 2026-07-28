@@ -26,4 +26,13 @@ export const instructors = [
     students: "18k+ Students",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400",
   },
+  {
+    id: "4",
+    name: "Emily Watson",
+    role: "Data Science & AI Specialist",
+    courses: "15 Courses",
+    rating: "4.9",
+    students: "22k+ Students",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=400",
+  },
 ];
