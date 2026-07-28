@@ -1,5 +1,7 @@
 import Banner from "@/components/modules/Home/Banner";
+import LearningTips from "@/components/modules/Home/LearningTips";
 import PopularCourses from "@/components/modules/Home/PopularCourses";
+import TopInstructors from "@/components/modules/Home/TopInstructors";
 
 
 export default function Home() {
@@ -7,6 +9,8 @@ export default function Home() {
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <Banner/>
       <PopularCourses/>
+      <LearningTips/>
+      <TopInstructors/>
     </div>
   );
 }
