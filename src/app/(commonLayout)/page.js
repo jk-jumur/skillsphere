@@ -6,7 +6,8 @@ import PopularCourses from "@/components/modules/Home/PopularCourses";
 import TopInstructors from "@/components/modules/Home/TopInstructors";
 
 
-export default function Home() {
+export default async function Home() {
+  await new Promise((resolve) => setTimeout(resolve, 2000));
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <Banner/>

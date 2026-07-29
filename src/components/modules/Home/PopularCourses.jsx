@@ -1,22 +1,37 @@
+import { Suspense } from "react";
 import PopularCourseCard from "@/components/shared/PopularCourseCard";
+import PopularCourseLoader from "./PopularCourseLoader";
 
-const PopularCourses = async () => {
+
+const CourseGrid = async () => {
+
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
   let courses = [];
-
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/data.json`, {
-      cache: "no-store", 
+      cache: "no-store",
     });
     courses = await res.json();
   } catch (error) {
     console.error("Error fetching courses:", error);
   }
 
- 
   const popularCourses = [...courses]
     .sort((a, b) => (b.rating || 0) - (a.rating || 0))
     .slice(0, 3);
 
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {popularCourses.map((course) => (
+        <PopularCourseCard key={course.id} course={course} />
+      ))}
+    </div>
+  );
+};
+
+// main Server Component
+const PopularCourses = () => {
   return (
     <section className="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       {/* Header Part */}
@@ -29,12 +44,10 @@ const PopularCourses = async () => {
         </p>
       </div>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {popularCourses.map((course) => (
-          <PopularCourseCard key={course.id} course={course} />
-        ))}
-      </div>
+      {/* Suspense Loader fallback */}
+      <Suspense fallback={<PopularCourseLoader />}>
+        <CourseGrid />
+      </Suspense>
     </section>
   );
 };
