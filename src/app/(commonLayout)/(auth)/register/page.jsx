@@ -55,14 +55,21 @@ export default function RegisterPage() {
       });
 
       if (res?.error) {
-        toast.error(res.error.message || "Registration failed!");
+        // Show error toast if account creation fails
+        toast.error(res.error.message || "Account creation failed!");
       } else {
-        toast.success("Account created successfully!");
-        router.push("/");
-        router.refresh();
+        // Show success toast if account creation succeeds
+        toast.success("Successfully account created!");
+        
+        // Add a slight delay before redirecting so the toast is visible
+        setTimeout(() => {
+          router.push("/");
+          router.refresh();
+        }, 500);
       }
     } catch (err) {
-      toast.error(err?.message || "An unexpected error occurred.");
+      // Catch network or unexpected errors
+      toast.error(err?.message || "Account creation failed! Please try again.");
     } finally {
       setLoading(false);
     }
@@ -70,10 +77,14 @@ export default function RegisterPage() {
 
   const handleGoogleRegister = async () => {
     try {
-      await authClient.signIn.social({
+      const res = await authClient.signIn.social({
         provider: "google",
         callbackURL: "/",
       });
+
+      if (res?.error) {
+        toast.error(res.error.message || "Google sign up failed.");
+      }
     } catch (err) {
       toast.error("Google sign up failed.");
     }
@@ -108,7 +119,6 @@ export default function RegisterPage() {
               Full Name <span className="text-red-500">*</span>
             </Label>
             <div className="relative flex items-center">
-              {/* Lucide User Icon Inside Field */}
               <User className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 z-10 pointer-events-none group-focus-within:text-blue-500 dark:group-focus-within:text-cyan-400 transition-colors" />
               <input
                 required
@@ -128,7 +138,6 @@ export default function RegisterPage() {
               Profile Image URL
             </Label>
             <div className="relative flex items-center">
-              {/* Lucide Link Icon Inside Field */}
               <LinkIcon className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 z-10 pointer-events-none group-focus-within:text-blue-500 dark:group-focus-within:text-cyan-400 transition-colors" />
               <input
                 name="image"
@@ -147,7 +156,6 @@ export default function RegisterPage() {
               Email <span className="text-red-500">*</span>
             </Label>
             <div className="relative flex items-center">
-              {/* Lucide Mail Icon Inside Field */}
               <Mail className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 z-10 pointer-events-none group-focus-within:text-blue-500 dark:group-focus-within:text-cyan-400 transition-colors" />
               <input
                 required
@@ -167,7 +175,6 @@ export default function RegisterPage() {
               Password <span className="text-red-500">*</span>
             </Label>
             <div className="relative flex items-center">
-              {/* Lucide Lock Icon Inside Field */}
               <Lock className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 z-10 pointer-events-none group-focus-within:text-blue-500 dark:group-focus-within:text-cyan-400 transition-colors" />
               <input
                 required
@@ -178,7 +185,6 @@ export default function RegisterPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full pl-10 pr-10 h-11 bg-blue-50/40 dark:bg-zinc-800/60 border border-blue-100/60 dark:border-zinc-700/60 rounded-2xl text-xs sm:text-sm text-slate-800 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-500 outline-none hover:bg-blue-50 dark:hover:bg-zinc-800 hover:border-blue-200 dark:hover:border-zinc-600 focus:bg-white dark:focus:bg-zinc-900 focus:border-blue-500 dark:focus:border-cyan-400 focus:ring-4 focus:ring-blue-500/10 dark:focus:ring-cyan-400/10 transition-all duration-200"
               />
-              {/* Lucide Eye / EyeOff Icon */}
               <button
                 type="button"
                 onClick={toggleVisibility}
@@ -195,7 +201,6 @@ export default function RegisterPage() {
               Confirm Password <span className="text-red-500">*</span>
             </Label>
             <div className="relative flex items-center">
-              {/* Lucide Lock Icon Inside Field */}
               <Lock className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 z-10 pointer-events-none group-focus-within:text-blue-500 dark:group-focus-within:text-cyan-400 transition-colors" />
               <input
                 required
@@ -206,7 +211,6 @@ export default function RegisterPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 className="w-full pl-10 pr-10 h-11 bg-blue-50/40 dark:bg-zinc-800/60 border border-blue-100/60 dark:border-zinc-700/60 rounded-2xl text-xs sm:text-sm text-slate-800 dark:text-zinc-100 placeholder:text-slate-400 dark:placeholder:text-zinc-500 outline-none hover:bg-blue-50 dark:hover:bg-zinc-800 hover:border-blue-200 dark:hover:border-zinc-600 focus:bg-white dark:focus:bg-zinc-900 focus:border-blue-500 dark:focus:border-cyan-400 focus:ring-4 focus:ring-blue-500/10 dark:focus:ring-cyan-400/10 transition-all duration-200"
               />
-              {/* Lucide Eye / EyeOff Icon */}
               <button
                 type="button"
                 onClick={toggleConfirmVisibility}
@@ -221,7 +225,7 @@ export default function RegisterPage() {
           <Button
             type="submit"
             isLoading={loading}
-            className="w-full h-11 font-semibold text-white text-sm bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 hover:shadow-lg hover:shadow-blue-500/25 dark:from-blue-500 dark:to-cyan-400 dark:text-zinc-950 rounded-2xl active:scale-[0.98] transition-all duration-200 mt-2"
+            className="w-full h-11 font-semibold text-white text-sm bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 hover:shadow-lg hover:shadow-blue-500/25 dark:from-blue-500 dark:to-cyan-400 dark:text-zinc-950 rounded-2xl active:scale-[0.98] transition-all duration-200 mt-2"
           >
             Create Account
           </Button>
@@ -253,7 +257,7 @@ export default function RegisterPage() {
             href="/login" 
             className="font-semibold text-blue-600 dark:text-cyan-400 hover:underline transition-all"
           >
-           Login
+            Login
           </Link>
         </p>
 

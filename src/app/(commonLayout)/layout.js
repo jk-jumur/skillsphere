@@ -3,6 +3,7 @@ import './globals.css'
 import Footer from '@/components/layout/Footer'
 import Navbar from '@/components/layout/Navbar'
 import NextThemeProvider from '@/providers/NextThemeProvider'
+import { Toaster } from 'react-hot-toast'
 
 // Body & UI font
 const inter = Inter({
@@ -37,6 +38,7 @@ export default function RootLayout({ children }) {
                     <Navbar />
                     <main className='flex-1'>{children}</main>
                     <Footer />
+                    <Toaster position="top-right" reverseOrder={false} />
                 </NextThemeProvider>
             </body>
         </html>

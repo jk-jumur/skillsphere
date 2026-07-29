@@ -1,14 +1,16 @@
 'use client'
 
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 import { toast } from 'react-toastify'
-import { GraduationCap, Menu } from 'lucide-react'
+
 import { Avatar, Button, Dropdown } from '@heroui/react'
 
-import ThemeToggoler from '@/lib/ThemeToggler'
+import ThemeToggler from '@/lib/ThemeToggler'
 import { authClient } from '@/lib/auth-client'
+import { GraduationCap, Menu } from 'lucide-react'
+import Link from 'next/link'
 
+// রিকোয়ারমেন্ট অনুযায়ী ৩টি নির্দিষ্ট রুট
 const navLinks = [
     {
         label: 'Home',
@@ -26,13 +28,13 @@ const navLinks = [
 
 const Navbar = () => {
     const router = useRouter()
+    const pathname = usePathname()
 
     /* =========================
        SESSION
     ========================= */
 
     const { data: session, isPending } = authClient.useSession()
-
     const user = session?.user
 
     /* =========================
@@ -57,14 +59,13 @@ const Navbar = () => {
 
     return (
         <nav className='sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl'>
-            <header className='container mx-auto flex items-center justify-between py-4 px-4 sm:px-6 lg:px-8'>
-                {/* Logo (Updated to match Footer style) */}
+            <header className='container mx-auto flex items-center justify-between py-4'>
+                {/* Logo */}
                 <Link href='/' className='group flex items-center gap-2.5'>
                     <div className='flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-tr from-blue-600 to-teal-400 text-white shadow-md transition-transform duration-300 group-hover:scale-105'>
                         <GraduationCap className='h-5 w-5' />
                     </div>
 
-                    {/* Text logo */}
                     <div className='flex flex-col'>
                         <span className='text-xl font-extrabold tracking-tight text-foreground'>
                             Skill<span className='text-blue-500'>Sphere</span>
@@ -72,37 +73,35 @@ const Navbar = () => {
                     </div>
                 </Link>
 
-                {/* Desktop Navigation */}
+                {/* Desktop Navigation (3 routes) */}
                 <ul className='hidden items-center gap-8 md:flex'>
-                    {navLinks.map((link) => (
-                        <li key={link.href}>
-                            <Link
-                                href={link.href}
-                                className='font-medium text-foreground transition-colors duration-200 hover:text-primary'
-                            >
-                                {link.label}
-                            </Link>
-                        </li>
-                    ))}
-
-                    {/* Profile Link Only When Logged In */}
-                    {user && (
-                        <li>
-                            <Link
-                                href='/profile'
-                                className='font-medium text-foreground transition-colors duration-200 hover:text-primary'
-                            >
-                                My Profile
-                            </Link>
-                        </li>
-                    )}
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href
+                        return (
+                            <li key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className={`relative py-1 font-semibold transition-all duration-200 ${
+                                        isActive
+                                            ? 'text-blue-600 dark:text-blue-400'
+                                            : 'text-foreground hover:text-blue-500'
+                                    }`}
+                                >
+                                    {link.label}
+                                    {isActive && (
+                                        <span className='absolute inset-x-0 -bottom-1 h-[2px] rounded-full bg-blue-600 dark:bg-blue-400' />
+                                    )}
+                                </Link>
+                            </li>
+                        )
+                    })}
                 </ul>
 
                 {/* Right Side */}
                 <div className='flex items-center gap-3'>
-                    {/* Theme Toggle — always visible */}
+                    {/* Theme Toggle */}
                     <div className='rounded-full border border-border bg-secondary p-1'>
-                        <ThemeToggoler />
+                        <ThemeToggler />
                     </div>
 
                     {/* Loading skeleton */}
@@ -113,19 +112,16 @@ const Navbar = () => {
                     {/* ── DESKTOP: Logged In ── */}
                     {!isPending && user && (
                         <div className='hidden items-center gap-3 md:flex'>
-                            {/* User Info */}
                             <div className='flex flex-col items-end'>
                                 <span className='text-sm font-semibold text-foreground'>
                                     {user.name}
                                 </span>
-
                                 <span className='text-xs text-muted-foreground'>
                                     {user.email}
                                 </span>
                             </div>
 
-                            {/* Avatar */}
-                            <Link href='/profile'>
+                            <Link href='/my-profile'>
                                 <Avatar
                                     src={user.image || ''}
                                     name={user.name || 'User'}
@@ -136,7 +132,6 @@ const Navbar = () => {
                                 />
                             </Link>
 
-                            {/* Logout */}
                             <Button
                                 size='sm'
                                 variant='flat'
@@ -163,7 +158,7 @@ const Navbar = () => {
                             <Button
                                 asChild
                                 size='sm'
-                                className='bg-primary font-medium text-primary-foreground shadow-lg transition-all hover:scale-[1.02] hover:opacity-90'
+                                className='bg-blue-600 font-medium text-white shadow-lg transition-all hover:scale-[1.02] hover:bg-blue-700'
                             >
                                 <Link href='/register'>Register</Link>
                             </Button>
@@ -172,7 +167,7 @@ const Navbar = () => {
 
                     {/* ── MOBILE: Avatar (only when logged in) ── */}
                     {!isPending && user && (
-                        <Link href='/profile' className='md:hidden'>
+                        <Link href='/my-profile' className='md:hidden'>
                             <Avatar
                                 src={user.image || ''}
                                 name={user.name || 'User'}
@@ -187,75 +182,80 @@ const Navbar = () => {
                     {/* ── MOBILE: Hamburger Dropdown ── */}
                     <div className='md:hidden'>
                         <Dropdown>
-                            {/* 💡 এখানে Button-এর বদলে div ব্যবহার করে nested button error সমাধান করা হয়েছে */}
                             <Dropdown.Trigger>
-                                <div
-                                    role='button'
+                                <Button
+                                    isIconOnly
+                                    size='sm'
+                                    variant='flat'
                                     aria-label='Open navigation menu'
-                                    className='flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-secondary text-foreground cursor-pointer transition-colors hover:bg-hover'
+                                    className='border border-border bg-secondary text-foreground'
                                 >
-                                    <Menu className='h-5 w-5' />
-                                </div>
+                                    <Menu />
+                                </Button>
                             </Dropdown.Trigger>
 
                             <Dropdown.Popover className='mt-5 w-full'>
                                 <Dropdown.Menu aria-label='Navigation menu'>
-                                    {/* Nav Links */}
-                                    {navLinks.map((link) => (
-                                        <Dropdown.Item key={link.href} textValue={link.label}>
-                                            <Link
-                                                href={link.href}
-                                                className='block w-full font-medium text-foreground'
-                                            >
-                                                {link.label}
-                                            </Link>
+                                    {/* 3 Nav Links */}
+                                    {navLinks.map((link) => {
+                                        const isActive = pathname === link.href
+                                        return (
+                                            <Dropdown.Item key={link.href} textValue={link.label}>
+                                                <Link
+                                                    href={link.href}
+                                                    className={`block w-full font-medium ${
+                                                        isActive
+                                                            ? 'font-semibold text-blue-600 dark:text-blue-400'
+                                                            : 'text-foreground'
+                                                    }`}
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            </Dropdown.Item>
+                                        )
+                                    })}
+
+                                    {/* Mobile Auth Actions */}
+                                    {user ? (
+                                        <Dropdown.Item
+                                            key='logout'
+                                            textValue='Logout'
+                                            className='text-danger'
+                                            onAction={handleLogout}
+                                        >
+                                            Logout
                                         </Dropdown.Item>
-                                    ))}
+                                    ) : [
+                                        <Dropdown.Item key='login' textValue='Login'>
+                                            <Link
+                                                href='/login'
+                                                className={`block w-full font-medium ${
+                                                    pathname === '/login'
+                                                        ? 'font-semibold text-blue-600 dark:text-blue-400'
+                                                        : 'text-foreground'
+                                                }`}
+                                            >
+                                                Login
+                                            </Link>
+                                        </Dropdown.Item>,
 
-                                    {/* My Profile — only when logged in */}
-                                    {user
-                                        ? [
-                                                <Dropdown.Item key='profile' textValue='My Profile'>
-                                                    <Link
-                                                        href='/profile'
-                                                        className='block w-full font-medium text-foreground'
-                                                    >
-                                                        My Profile
-                                                    </Link>
-                                                </Dropdown.Item>,
-
-                                                <Dropdown.Item
-                                                    key='logout'
-                                                    textValue='Logout'
-                                                    className='text-danger'
-                                                    onAction={handleLogout}
-                                                >
-                                                    Logout
-                                                </Dropdown.Item>,
-                                            ]
-                                        : [
-                                                <Dropdown.Item key='login' textValue='Login'>
-                                                    <Link
-                                                        href='/login'
-                                                        className='block w-full font-medium text-foreground'
-                                                    >
-                                                        Login
-                                                    </Link>
-                                                </Dropdown.Item>,
-
-                                                <Dropdown.Item
-                                                    key='register'
-                                                    textValue='Register'
-                                                    className='font-medium text-primary'
-                                                >
-                                                    <Link
-                                                        href='/register'
-                                                        className='block w-full font-medium text-primary'
-                                                    >
-                                                        Register
-                                                    </Link>
-                                                </Dropdown.Item>,
-                                            ]}
+                                        <Dropdown.Item
+                                            key='register'
+                                            textValue='Register'
+                                            className='font-medium text-blue-600'
+                                        >
+                                            <Link
+                                                href='/register'
+                                                className={`block w-full font-medium ${
+                                                    pathname === '/register'
+                                                        ? 'font-semibold text-blue-600 dark:text-blue-400'
+                                                        : 'text-blue-600'
+                                                }`}
+                                            >
+                                                Register
+                                            </Link>
+                                        </Dropdown.Item>,
+                                    ]}
                                 </Dropdown.Menu>
                             </Dropdown.Popover>
                         </Dropdown>

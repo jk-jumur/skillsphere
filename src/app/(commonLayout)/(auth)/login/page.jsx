@@ -34,12 +34,17 @@ export default function LoginPage() {
         password,
       });
 
+      // 1. Check success or error and display appropriate toast message
       if (res?.error) {
         toast.error(res.error.message || "Invalid credentials!");
       } else {
-        toast.success("Welcome back!");
-        router.push("/");
-        router.refresh();
+        toast.success("Welcome back! 👋 Logged in successfully.");
+        
+        // 2. Add a 500ms delay before redirecting so the user can see the toast message
+        setTimeout(() => {
+          router.push("/");
+          router.refresh();
+        }, 500);
       }
     } catch (err) {
       toast.error(err?.message || "An unexpected error occurred.");
@@ -50,10 +55,14 @@ export default function LoginPage() {
 
   const handleGoogleLogin = async () => {
     try {
-      await authClient.signIn.social({
+      const res = await authClient.signIn.social({
         provider: "google",
         callbackURL: "/",
       });
+
+      if (res?.error) {
+        toast.error(res.error.message || "Google sign in failed.");
+      }
     } catch (err) {
       toast.error("Google sign in failed.");
     }
@@ -177,5 +186,5 @@ export default function LoginPage() {
 
       </Card>
     </div>
-  );
+  ); 
 }
