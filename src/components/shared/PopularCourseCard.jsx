@@ -1,14 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, Button } from "@heroui/react";
-import { Star, User, ArrowRight, BookOpen, Sparkles, GraduationCap } from "lucide-react";
+import { Star, User, ArrowRight, Clock, GraduationCap, BarChart } from "lucide-react";
 
 const PopularCourseCard = ({ course }) => {
   return (
     <Card 
-      className="group relative p-4 rounded-3xl border border-slate-200/80 dark:border-zinc-800/80 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/15 dark:hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full"
+      className="group relative p-4 rounded-3xl border border-blue-200/70 dark:border-zinc-800/80 bg-white/85 dark:bg-zinc-900/90 backdrop-blur-xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/20 dark:hover:shadow-blue-500/20 hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden h-full"
     >
-      {/*  Top Ambient Glow */}
+      {/* Top Ambient Glow */}
       <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/20 dark:bg-blue-400/20 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500 pointer-events-none" />
 
       <div>
@@ -27,7 +27,7 @@ const PopularCourseCard = ({ course }) => {
           {/* Dark Overlay Gradient */}
           <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
           
-          {/* Dynamic Category Badge with Pulsing Dot */}
+          {/* Category Badge */}
           {course?.category && (
             <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wide backdrop-blur-md transition-all duration-300
                             bg-slate-900/80 text-white border border-white/20 shadow-lg shadow-black/20
@@ -40,13 +40,13 @@ const PopularCourseCard = ({ course }) => {
             </div>
           )}
 
-          {/*  Glassmorphism Lessons Badge */}
-          {course?.lessons && (
+          {/* Duration Badge (Replacing lessons since JSON has duration) */}
+          {course?.duration && (
             <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md transition-all duration-300
                             bg-white/25 text-white border border-white/30 shadow-md
                             dark:bg-black/40 dark:text-emerald-300 dark:border-emerald-500/30">
-              <BookOpen className="w-3.5 h-3.5 text-blue-300 dark:text-emerald-400" />
-              <span>{course.lessons} Lessons</span>
+              <Clock className="w-3.5 h-3.5 text-blue-300 dark:text-emerald-400" />
+              <span>{course.duration}</span>
             </div>
           )}
         </div>
@@ -54,13 +54,13 @@ const PopularCourseCard = ({ course }) => {
         {/* 2. Course Content Section */}
         <div className="pt-5 pb-2 px-1 space-y-3.5">
           
-          {/* Instructor & Smart Rating */}
+          {/* Instructor & Rating */}
           <div className="flex items-center justify-between text-xs sm:text-sm">
             
-            {/* 👤 Instructor Info */}
+            {/* Instructor Info */}
             <div className="flex items-center gap-2 font-medium">
               <div className="p-1.5 rounded-full ring-1 shadow-xs transition-colors
-                              bg-slate-100 text-slate-700 ring-slate-300
+                              bg-blue-100/80 text-blue-800 ring-blue-300/80
                               dark:bg-blue-950/80 dark:text-blue-400 dark:ring-blue-400/30">
                 <User className="w-3.5 h-3.5" />
               </div>
@@ -69,7 +69,7 @@ const PopularCourseCard = ({ course }) => {
               </span>
             </div>
 
-            {/*  Rating Badge */}
+            {/* Rating Badge */}
             {course?.rating && (
               <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full font-extrabold text-xs transition-all duration-300
                               bg-amber-500/10 text-amber-700 ring-1 ring-amber-500/30
@@ -80,39 +80,35 @@ const PopularCourseCard = ({ course }) => {
             )}
           </div>
 
-          {/*  Title with Hover Logo effect */}
+          {/* Title */}
           <div className="flex items-start gap-2.5 group/title">
-            {/* Title Logo/Icon */}
-            <div className="p-1.5 rounded-xl bg-blue-50 dark:bg-zinc-800/80 text-slate-600 dark:text-zinc-400 
+            <div className="p-1.5 rounded-xl bg-blue-100/80 dark:bg-zinc-800/80 text-blue-700 dark:text-zinc-400 
                             group-hover:bg-blue-600 group-hover:text-white dark:group-hover:bg-cyan-500 dark:group-hover:text-zinc-950 
                             group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shrink-0 mt-0.5">
               <GraduationCap className="w-4 h-4 transition-colors" />
             </div>
 
-            {/* Title Text */}
             <h3 className="text-lg font-black line-clamp-2 text-slate-900 dark:text-white 
                            group-hover:text-blue-600 dark:group-hover:text-cyan-400 transition-colors leading-snug tracking-tight">
               {course?.title}
             </h3>
           </div>
 
-          {/* Price & Extra Details */}
-          <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-zinc-800/80 text-xs">
-            {course?.price ? (
-              <div className="flex items-baseline gap-1">
-                <span className="text-xs text-slate-500 dark:text-zinc-400 font-medium">Price:</span>
-                <span className="text-base font-black text-slate-900 dark:text-white">
-                  {course.price === "Free" ? (
-                    <span className="text-emerald-600 dark:text-emerald-400 font-extrabold flex items-center gap-1">
-                      <Sparkles className="w-3.5 h-3.5 inline" /> Free
-                    </span>
-                  ) : (
-                    `$${course.price}`
-                  )}
-                </span>
-              </div>
-            ) : null}
-          </div>
+          {/* Description */}
+          {course?.description && (
+            <p className="text-xs text-slate-600 dark:text-zinc-400 line-clamp-2 leading-relaxed">
+              {course.description}
+            </p>
+          )}
+
+          {/* Level Info */}
+          {course?.level && (
+            <div className="flex items-center gap-1.5 pt-2 border-t border-blue-100/80 dark:border-zinc-800/80 text-xs text-slate-500 dark:text-zinc-400 font-medium">
+              <BarChart className="w-3.5 h-3.5 text-blue-500 dark:text-cyan-400 shrink-0" />
+              <span>Level:</span>
+              <span className="font-bold text-slate-800 dark:text-zinc-200">{course.level}</span>
+            </div>
+          )}
 
         </div>
       </div>

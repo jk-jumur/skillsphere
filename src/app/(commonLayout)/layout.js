@@ -5,13 +5,11 @@ import Navbar from '@/components/layout/Navbar'
 import NextThemeProvider from '@/providers/NextThemeProvider'
 import { Toaster } from 'react-hot-toast'
 
-// Body & UI font
 const inter = Inter({
     variable: '--font-inter',
     subsets: ['latin'],
 })
 
-// Primary heading font
 const playfair = Playfair_Display({
     variable: '--font-playfair',
     subsets: ['latin'],
@@ -32,11 +30,11 @@ export default function RootLayout({ children }) {
         >
             <body 
                 suppressHydrationWarning 
-                className='min-h-screen flex flex-col font-[var(--font-inter)]'
+                className='min-h-screen flex flex-col font-[var(--font-inter)] bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 transition-colors duration-300 relative'
             >
                 <NextThemeProvider>
                     <Navbar />
-                    <main className='flex-1'>{children}</main>
+                    <main className='flex-1 flex flex-col'>{children}</main>
                     <Footer />
                     <Toaster position="top-right" reverseOrder={false} />
                 </NextThemeProvider>

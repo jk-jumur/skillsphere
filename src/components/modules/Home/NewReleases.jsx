@@ -6,31 +6,38 @@ import { staticNewCourses } from "@/data/newCoursesData";
 
 const NewReleases = () => {
   return (
-    <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden">
-      {/* 1. Header Section */}
-      <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12 gap-4">
-        <div className="space-y-1.5 sm:space-y-2">
-          {/* Badge: Match with Theme */}
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400 bg-blue-50 dark:bg-cyan-950/50 border border-blue-200/60 dark:border-cyan-800/50 transition-colors">
-            <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
-            <span>Freshly Added</span>
-          </div>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-zinc-100 tracking-tight transition-colors">
-            New Releases & Trending
-          </h2>
+    <section className="py-10 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden bg-transparent">
+      {/* 1. Header Section (Centered) */}
+      <div className="flex flex-col items-center text-center mb-8 sm:mb-12 space-y-3 sm:space-y-4 max-w-2xl mx-auto">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-cyan-400 bg-blue-100/60 dark:bg-cyan-950/50 border border-blue-200/80 dark:border-cyan-800/50 transition-colors">
+          <Flame className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse" />
+          <span>Freshly Added</span>
         </div>
 
-        <Link href="/courses" className="self-start sm:self-auto">
-          <Button
-            variant="light"
-            color="primary"
-            className="font-bold text-xs sm:text-sm px-4 py-2 text-blue-600 dark:text-cyan-400 hover:bg-blue-50 dark:hover:bg-zinc-800/80 rounded-xl transition-all"
-            endContent={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-          >
-            Explore All
-          </Button>
-        </Link>
+        {/* Title */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-slate-900 dark:text-zinc-100 tracking-tight transition-colors">
+          New Releases & Trending
+        </h2>
+
+        {/* Description */}
+        <p className="text-sm sm:text-base text-slate-600 dark:text-zinc-400 font-medium leading-relaxed">
+          Explore our latest industry-level courses, designed by top experts to help you master modern skills and boost your career.
+        </p>
+
+        {/* Explore Button */}
+        <div className="pt-1">
+          <Link href="/courses">
+            <Button
+              variant="light"
+              color="primary"
+              className="font-bold text-xs sm:text-sm px-5 py-2 text-blue-600 dark:text-cyan-400 hover:bg-blue-100/50 dark:hover:bg-zinc-800/80 rounded-xl transition-all"
+              endContent={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+            >
+              Explore All
+            </Button>
+          </Link>
+        </div>
       </div>
 
       {/* 2. Responsive Grid Cards */}
@@ -38,10 +45,10 @@ const NewReleases = () => {
         {staticNewCourses.map((course) => (
           <Card
             key={course.id}
-            className="group relative p-3.5 sm:p-4 rounded-3xl border border-slate-200/80 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 dark:hover:shadow-cyan-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
+            className="group relative p-3.5 sm:p-4 rounded-3xl border border-blue-200/70 dark:border-zinc-800 bg-white/85 dark:bg-zinc-900/90 backdrop-blur-xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/15 dark:hover:shadow-cyan-500/10 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between h-full overflow-hidden"
           >
             {/* Ambient Corner Glow (Adaptive for Theme) */}
-            <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/10 dark:bg-cyan-500/10 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500 pointer-events-none" />
+            <div className="absolute -top-12 -right-12 w-32 h-32 bg-blue-500/15 dark:bg-cyan-500/10 rounded-full blur-2xl group-hover:scale-150 transition-all duration-500 pointer-events-none" />
 
             <div>
               {/* Course Image Container */}
@@ -77,8 +84,8 @@ const NewReleases = () => {
               <div className="pt-4 sm:pt-5 pb-2 space-y-3">
                 {/* Instructor & Rating */}
                 <div className="flex items-center justify-between text-xs sm:text-sm">
-                  <div className="flex items-center gap-1.5 text-slate-600 dark:text-zinc-400">
-                    <User className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500" />
+                  <div className="flex items-center gap-1.5 text-slate-700 dark:text-zinc-400">
+                    <User className="w-3.5 h-3.5 text-blue-500 dark:text-zinc-500" />
                     <span className="font-semibold line-clamp-1">
                       {typeof course.instructor === "object"
                         ? course.instructor.name
@@ -86,7 +93,7 @@ const NewReleases = () => {
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-1 text-amber-600 dark:text-amber-400 font-bold bg-amber-50 dark:bg-amber-500/10 px-2.5 py-0.5 rounded-lg border border-amber-200/60 dark:border-amber-500/20">
+                  <div className="flex items-center gap-1 text-amber-700 dark:text-amber-400 font-bold bg-amber-500/10 dark:bg-amber-500/10 px-2.5 py-0.5 rounded-lg border border-amber-500/30 dark:border-amber-500/20">
                     <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     <span>{course.rating}</span>
                   </div>
@@ -98,7 +105,7 @@ const NewReleases = () => {
                 </h3>
 
                 {/* Category & Price */}
-                <div className="flex items-center justify-between pt-2.5 border-t border-slate-100 dark:border-zinc-800 text-xs sm:text-sm">
+                <div className="flex items-center justify-between pt-2.5 border-t border-blue-100/80 dark:border-zinc-800 text-xs sm:text-sm">
                   <span className="text-slate-500 dark:text-zinc-400 font-medium">
                     {course.category}
                   </span>
@@ -120,7 +127,7 @@ const NewReleases = () => {
                   color="primary"
                   radius="xl"
                   fullWidth
-                  className="font-bold text-xs sm:text-sm py-5 sm:py-6 bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 text-white transition-all shadow-md shadow-blue-500/10 dark:shadow-cyan-500/10 active:scale-[0.98]"
+                  className="font-bold text-xs sm:text-sm py-5 sm:py-6 bg-linear-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 dark:bg-blue-600 dark:hover:bg-blue-500 text-white transition-all shadow-md shadow-blue-500/20 dark:shadow-cyan-500/10 active:scale-[0.98]"
                 >
                   Explore Course
                 </Button>

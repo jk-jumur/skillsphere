@@ -11,7 +11,7 @@ const CourseListWithSearch = ({ initialCourses }) => {
   const pathname = usePathname();
   const { replace } = useRouter();
 
-  // কার্ডের জন্য ১.৫ সেকেন্ড লোডার দেখাবে
+ 
   useEffect(() => {
     const timer = setTimeout(() => setLoadingCards(false), 1500);
     return () => clearTimeout(timer);
