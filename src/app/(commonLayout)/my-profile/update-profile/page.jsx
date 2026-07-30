@@ -68,7 +68,7 @@ export default function UpdateProfilePage() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-background via-secondary/20 to-background text-foreground p-4 md:p-8 flex flex-col items-center justify-center relative">
+        <div className="min-h-screen bg-linear-to-b from-background via-secondary/20 to-background text-foreground p-4 md:p-8 flex flex-col items-center justify-center relative">
             <div className="w-full max-w-md my-auto">
                 
                 {/* 1. Back Button */}
@@ -86,7 +86,7 @@ export default function UpdateProfilePage() {
 
                 {/* 2. Form Card */}
                 <div className="bg-card/90 backdrop-blur-xl border border-border/80 p-6 md:p-8 rounded-3xl shadow-2xl relative overflow-hidden">
-                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-500 via-indigo-500 to-sky-400" />
+                    <div className="absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r from-blue-500 via-indigo-500 to-sky-400" />
 
                     {/* Card Header */}
                     <div className="flex items-start gap-4 mb-6 pb-5 border-b border-border/60">
