@@ -10,7 +10,6 @@ import { authClient } from '@/lib/auth-client'
 import { GraduationCap, Menu } from 'lucide-react'
 import Link from 'next/link'
 
-
 const navLinks = [
     {
         label: 'Home',
@@ -45,20 +44,16 @@ const Navbar = () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
-                  
                     toast.success('Logged out successfully!', {
                         position: 'top-right',
-                        autoClose: 3000,
                     })
 
                     router.push('/')
                     router.refresh()
                 },
                 onError: (ctx) => {
-                   
                     toast.error(ctx.error.message || 'Logout failed! Please try again.', {
                         position: 'top-right',
-                        autoClose: 3000,
                     })
                 },
             },
@@ -131,10 +126,12 @@ const Navbar = () => {
 
                             <Link href='/my-profile'>
                                 <Avatar
-                                    src={user.image || ''}
-                                    name={user.name || 'User'}
+                                    src={user?.image || user?.avatar || ''}
+                                    name={user?.name || 'User'}
                                     size='sm'
                                     isBordered
+                                    showFallback
+                                    referrerPolicy="no-referrer"
                                     color='danger'
                                     className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
                                 />
@@ -177,10 +174,12 @@ const Navbar = () => {
                     {!isPending && user && (
                         <Link href='/my-profile' className='md:hidden'>
                             <Avatar
-                                src={user.image || ''}
-                                name={user.name || 'User'}
+                                src={user?.image || user?.avatar || ''}
+                                name={user?.name || 'User'}
                                 size='sm'
                                 isBordered
+                                showFallback
+                                referrerPolicy="no-referrer"
                                 color='danger'
                                 className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
                             />
