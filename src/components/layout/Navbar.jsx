@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, usePathname } from 'next/navigation'
-import { toast } from 'react-toastify'
+import toast from 'react-hot-toast'
 
 import { Avatar, Button, Dropdown } from '@heroui/react'
 
@@ -10,7 +10,7 @@ import { authClient } from '@/lib/auth-client'
 import { GraduationCap, Menu } from 'lucide-react'
 import Link from 'next/link'
 
-// রিকোয়ারমেন্ট অনুযায়ী ৩টি নির্দিষ্ট রুট
+
 const navLinks = [
     {
         label: 'Home',
@@ -45,13 +45,21 @@ const Navbar = () => {
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
-                    toast.success('See you soon! 👋 Logged out successfully', {
+                  
+                    toast.success('Logged out successfully!', {
                         position: 'top-right',
                         autoClose: 3000,
                     })
 
                     router.push('/')
                     router.refresh()
+                },
+                onError: (ctx) => {
+                   
+                    toast.error(ctx.error.message || 'Logout failed! Please try again.', {
+                        position: 'top-right',
+                        autoClose: 3000,
+                    })
                 },
             },
         })

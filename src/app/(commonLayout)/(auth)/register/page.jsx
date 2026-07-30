@@ -55,21 +55,24 @@ export default function RegisterPage() {
       });
 
       if (res?.error) {
-        // Show error toast if account creation fails
-        toast.error(res.error.message || "Account creation failed!");
+        // Show error toast if registration fails
+        toast.error(res.error.message || "Registration failed! Please try again.");
       } else {
-        // Show success toast if account creation succeeds
-        toast.success("Successfully account created!");
+        // Sign out immediately so Better Auth doesn't auto-login after signup
+        await authClient.signOut();
+
+        // Show success toast for registration
+        toast.success("Registration successful! Please login to continue.");
         
-        // Add a slight delay before redirecting so the toast is visible
+        // Redirect to login page
         setTimeout(() => {
-          router.push("/");
+          router.push("/login");
           router.refresh();
         }, 500);
       }
     } catch (err) {
       // Catch network or unexpected errors
-      toast.error(err?.message || "Account creation failed! Please try again.");
+      toast.error(err?.message || "Registration failed! Please try again.");
     } finally {
       setLoading(false);
     }
@@ -83,10 +86,10 @@ export default function RegisterPage() {
       });
 
       if (res?.error) {
-        toast.error(res.error.message || "Google sign up failed.");
+        toast.error(res.error.message || "Google registration failed.");
       }
     } catch (err) {
-      toast.error("Google sign up failed.");
+      toast.error("Google registration failed.");
     }
   };
 
@@ -227,7 +230,7 @@ export default function RegisterPage() {
             isLoading={loading}
             className="w-full h-11 font-semibold text-white text-sm bg-linear-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 hover:shadow-lg hover:shadow-blue-500/25 dark:from-blue-500 dark:to-cyan-400 dark:text-zinc-950 rounded-2xl active:scale-[0.98] transition-all duration-200 mt-2"
           >
-            Create Account
+            Register
           </Button>
         </form>
 
