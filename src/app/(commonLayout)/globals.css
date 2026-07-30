@@ -29,9 +29,10 @@
 }
 
 /* Hero UI & Tailwind UI Reset to Allow Gradient Background */
-html, body, main {
+html,
+body {
   background-color: var(--background) !important;
-  background-image: 
+  background-image:
     radial-gradient(at 0% 0%, rgba(37, 99, 235, 0.22) 0px, transparent 50%),
     radial-gradient(at 100% 40%, rgba(79, 70, 229, 0.18) 0px, transparent 50%),
     radial-gradient(at 50% 100%, rgba(14, 165, 233, 0.15) 0px, transparent 50%) !important;
@@ -39,9 +40,11 @@ html, body, main {
   color: var(--foreground) !important;
   font-family: Arial, Helvetica, sans-serif;
   min-height: 100vh;
-  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+main {
+  background: transparent;
+}
 
 @layer utilities {
   /* Glass Cards with Button-Matching Subtle Blue Glow */
@@ -55,4 +58,22 @@ html, body, main {
   .text-gradient {
     @apply bg-clip-text text-transparent bg-linear-to-r from-blue-600 via-indigo-600 to-sky-500 dark:from-sky-400 dark:via-indigo-400 dark:to-teal-300;
   }
+}
+
+/* Theme Toggle Smooth Transition (Slower & Smoother) */
+body, 
+div, 
+header, 
+nav, 
+section, 
+footer, 
+aside, 
+a, 
+button, 
+p, 
+span, 
+h1, h2, h3, h4, h5, h6 {
+  transition: background-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              color 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }

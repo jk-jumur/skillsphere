@@ -27,7 +27,7 @@ const TopInstructorSlider = ({ instructors }) => {
       handleNext();
     }, 5000);
     return () => clearInterval(interval);
-  }, [currentIndex, isHovered]);
+  }, [currentIndex , isHovered]);
 
   const currentInstructor = instructors[currentIndex];
 

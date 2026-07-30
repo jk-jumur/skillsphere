@@ -10,7 +10,9 @@ const ThemeToggler = () => {
 
   // Hydration mismatch prevent korar jonno
   useEffect(() => {
-    setMounted(true)
+    queueMicrotask(() => {
+      setMounted(true)
+    })
   }, [])
 
   if (!mounted) {
@@ -52,4 +54,4 @@ const ThemeToggler = () => {
   )
 }
 
-export default ThemeToggler;
+export default ThemeToggler

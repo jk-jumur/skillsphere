@@ -2,12 +2,13 @@
 
 import { useRouter, usePathname } from 'next/navigation'
 import toast from 'react-hot-toast'
+import Image from 'next/image'
 
-import { Avatar, Button, Dropdown } from '@heroui/react'
+import { Button, Dropdown } from '@heroui/react'
 
 import ThemeToggler from '@/lib/ThemeToggler'
 import { authClient } from '@/lib/auth-client'
-import { GraduationCap, Menu } from 'lucide-react'
+import { GraduationCap, Menu, User } from 'lucide-react'
 import Link from 'next/link'
 
 const navLinks = [
@@ -59,6 +60,9 @@ const Navbar = () => {
             },
         })
     }
+
+    // Dynamic Image URL resolver
+    const userImageUrl = user?.image || user?.avatar || ''
 
     return (
         <nav className='sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl'>
@@ -124,24 +128,31 @@ const Navbar = () => {
                                 </span>
                             </div>
 
-                            <Link href='/my-profile'>
-                                <Avatar
-                                    src={user?.image || user?.avatar || ''}
-                                    name={user?.name || 'User'}
-                                    size='sm'
-                                    isBordered
-                                    showFallback
-                                    referrerPolicy="no-referrer"
-                                    color='danger'
-                                    className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
-                                />
+                            {/* User Avatar Image Fix */}
+                            <Link href='/my-profile' className='relative shrink-0'>
+                                <div className='relative h-9 w-9 overflow-hidden rounded-full border-2 border-blue-500/80 bg-secondary shadow-sm transition-transform hover:scale-105 flex items-center justify-center'>
+                                    {userImageUrl ? (
+                                        <Image
+                                            src={userImageUrl}
+                                            alt={user?.name || 'User Profile'}
+                                            fill
+                                            unoptimized
+                                            sizes="36px"
+                                            className='object-cover'
+                                        />
+                                    ) : (
+                                        <span className='text-xs font-bold text-blue-600'>
+                                            {user?.name ? user.name.charAt(0).toUpperCase() : <User className="w-4 h-4" />}
+                                        </span>
+                                    )}
+                                </div>
                             </Link>
 
                             <Button
                                 size='sm'
                                 variant='flat'
                                 onPress={handleLogout}
-                                className='border border-border bg-secondary font-medium text-foreground transition-colors hover:bg-hover'
+                                className='border border-border bg-secondary font-medium text-foreground transition-colors hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/40'
                             >
                                 Logout
                             </Button>
@@ -172,24 +183,29 @@ const Navbar = () => {
 
                     {/* ── MOBILE & TABLET: Avatar (only when logged in) ── */}
                     {!isPending && user && (
-                        <Link href='/my-profile' className='lg:hidden'>
-                            <Avatar
-                                src={user?.image || user?.avatar || ''}
-                                name={user?.name || 'User'}
-                                size='sm'
-                                isBordered
-                                showFallback
-                                referrerPolicy="no-referrer"
-                                color='danger'
-                                className='cursor-pointer ring-2 ring-border transition-transform hover:scale-105'
-                            />
+                        <Link href='/my-profile' className='lg:hidden shrink-0'>
+                            <div className='relative h-9 w-9 overflow-hidden rounded-full border-2 border-blue-500/80 bg-secondary shadow-sm transition-transform hover:scale-105 flex items-center justify-center'>
+                                {userImageUrl ? (
+                                    <Image
+                                        src={userImageUrl}
+                                        alt={user?.name || 'User Profile'}
+                                        fill
+                                        unoptimized
+                                        sizes="36px"
+                                        className='object-cover'
+                                    />
+                                ) : (
+                                    <span className='text-xs font-bold text-blue-600'>
+                                        {user?.name ? user.name.charAt(0).toUpperCase() : <User className="w-4 h-4" />}
+                                    </span>
+                                )}
+                            </div>
                         </Link>
                     )}
 
                     {/* ── MOBILE & TABLET: Hamburger Dropdown ── */}
                     <div className='lg:hidden'>
                         <Dropdown>
-                            {/* Line 193 Error Fixed: Using styled div instead of nested Button */}
                             <Dropdown.Trigger>
                                 <div
                                     role="button"

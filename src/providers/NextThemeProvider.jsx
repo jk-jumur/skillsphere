@@ -1,30 +1,17 @@
 
-import { ThemeProvider } from 'next-themes';
+"use client";
 
+import { ThemeProvider } from "next-themes";
 
-
-const NextThemeProvider = ({ children }) => {
-
-return (
-
-<ThemeProvider
-
-attribute="class"
-
-defaultTheme="light"
-
-enableSystem={false}
-
->
-
-{children}
-
-</ThemeProvider>
-
-);
-
-};
-
-
-
-export default NextThemeProvider;
+export default function NextThemeProvider({ children }) {
+  return (
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem={false}
+      disableTransitionOnChange
+    >
+      {children}
+    </ThemeProvider>
+  );
+}

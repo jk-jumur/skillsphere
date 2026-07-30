@@ -71,19 +71,12 @@ export default function BannerClient({ slides = [] }) {
                 </h1>
               )}
 
-              {/*  3. Description Card  */}
-              <div className="p-4 sm:p-6 rounded-2xl bg-background/50 dark:bg-slate-900/50 backdrop-blur-md max-w-2xl mx-auto border border-white/20 dark:border-slate-800/40 shadow-xl">
-                {current?.subtitle && (
-                  <h2 className="text-xl sm:text-2xl font-bold text-foreground mb-2">
-                    {current.subtitle}
-                  </h2>
-                )}
-                {current?.description && (
-                  <p className="text-sm sm:text-base text-foreground/80 font-light leading-relaxed">
-                    {current.description}
-                  </p>
-                )}
-              </div>
+              {/* 3. Just Description  */}
+              {current?.description && (
+                <p className="text-base sm:text-lg text-slate-100 dark:text-slate-200 font-medium leading-relaxed max-w-2xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)] tracking-wide">
+                  {current.description}
+                </p>
+              )}
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">

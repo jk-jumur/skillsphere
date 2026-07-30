@@ -1,3 +1,4 @@
+import './globals.css'
 import { Inter, Playfair_Display } from 'next/font/google'
 import './globals.css'
 import Footer from '@/components/layout/Footer'
@@ -26,15 +27,17 @@ export default function RootLayout({ children }) {
         <html
             lang='en'
             suppressHydrationWarning
-            className={`${inter.variable} ${playfair.variable} h-full antialiased`}
+            className={`${inter.variable} ${playfair.variable} antialiased`}
         >
             <body 
-                suppressHydrationWarning 
+            suppressHydrationWarning
+                 
                 className='min-h-screen flex flex-col font-[var(--font-inter)] bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-100 transition-colors duration-300 relative'
             >
                 <NextThemeProvider>
                     <Navbar />
-                    <main className='flex-1 flex flex-col'>{children}</main>
+                   
+                    <main className="w-full flex-1">{children}</main>
                     <Footer />
                     <Toaster position="top-right" reverseOrder={false} />
                 </NextThemeProvider>

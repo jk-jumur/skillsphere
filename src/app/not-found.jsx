@@ -1,85 +1,91 @@
-'use client'
+// src/app/not-found.js
 
-import React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
-import { Home, ArrowLeft, Compass, AlertCircle } from 'lucide-react'
-import { Button } from '@heroui/react'
+import "@/app/(commonLayout)/globals.css";
+import Link from "next/link";
+
+export const metadata = {
+  title: "Page Not Found | SkillSphere",
+  description: "The page you are looking for does not exist on SkillSphere.",
+};
 
 export default function NotFound() {
-    const router = useRouter()
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-gradient-to-br from-[#dbeafe] via-[#e0e7ff] to-[#f3e8ff] font-sans select-none">
+      
+      {/* Background Soft Ambient Glows (Theme-1) */}
+      <div className="absolute top-1/4 -left-20 w-72 h-72 sm:w-96 sm:h-96 bg-blue-300/40 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 -right-20 w-72 h-72 sm:w-96 sm:h-96 bg-purple-300/50 rounded-full blur-[120px] pointer-events-none" />
 
-    return (
-        <div className="min-h-screen bg-gradient-to-b from-background via-secondary/20 to-background text-foreground flex flex-col items-center justify-center p-4 md:p-8 relative overflow-hidden">
+      <section className="relative z-10 max-w-lg w-full text-center flex flex-col items-center">
+
+        {/* Vector SVG (Exactly your original SVG code restored) */}
+        <div className="relative w-full max-w-[280px] sm:max-w-[340px] aspect-square flex items-center justify-center mb-2 animate-bounce" style={{ animationDuration: "4s" }}>
+          
+          <svg
+            viewBox="0 0 500 500"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full drop-shadow-[0_10px_25px_rgba(59,130,246,0.25)]"
+          >
+            <ellipse cx="250" cy="250" rx="200" ry="170" fill="#38bdf8" fillOpacity="0.15" />
             
-            {/* Background Animated Glowing Blobs */}
-            <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 md:w-96 h-72 md:h-96 bg-blue-500/20 dark:bg-blue-600/15 rounded-full blur-3xl animate-pulse pointer-events-none" />
-            <div className="absolute bottom-1/4 left-1/3 w-64 h-64 bg-indigo-500/15 dark:bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-700 pointer-events-none" />
+            <text x="50" y="290" fill="#1e293b" fontSize="170" fontWeight="900" opacity="0.95" fontFamily="sans-serif">4</text>
+            <text x="320" y="290" fill="#1e293b" fontSize="170" fontWeight="900" opacity="0.95" fontFamily="sans-serif">4</text>
+            
+            <circle cx="250" cy="220" r="75" stroke="#38bdf8" strokeWidth="24" fill="none" />
 
-            <div className="w-full max-w-lg my-auto relative z-10 text-center">
-                
-                {/* 404 Eye-Catching Hero Section */}
-                <div className="relative inline-block mb-6">
-                    {/* Animated Floating Compass Badge */}
-                    <div className="absolute -top-6 -right-2 md:-right-6 bg-blue-600 text-white p-3 rounded-2xl shadow-xl shadow-blue-500/30 animate-bounce duration-1000">
-                        <Compass className="w-6 h-6 animate-spin-slow" />
-                    </div>
+            <g className="animate-pulse" style={{ animationDuration: "2.5s" }}>
+              <polygon points="205,130 185,85 225,105" fill="#38bdf8" />
+              <polygon points="295,130 315,85 275,105" fill="#38bdf8" />
+              <polygon points="202,125 190,95 218,110" fill="#f8fafc" />
+              <polygon points="298,125 310,95 282,110" fill="#f8fafc" />
+              <circle cx="250" cy="140" r="45" fill="#f8fafc" />
+              <ellipse cx="232" cy="135" rx="5" ry="7" fill="#0f172a" />
+              <ellipse cx="268" cy="135" rx="5" ry="7" fill="#0f172a" />
+              <circle cx="230" cy="133" r="2" fill="#ffffff" />
+              <circle cx="266" cy="133" r="2" fill="#ffffff" />
+              <polygon points="250,145 245,140 255,140" fill="#38bdf8" />
+              <path d="M242 149 Q250 155 258 149" stroke="#0f172a" strokeWidth="3" strokeLinecap="round" fill="none" />
+              <line x1="195" y1="138" x2="220" y2="140" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+              <line x1="190" y1="148" x2="218" y2="145" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+              <line x1="305" y1="138" x2="280" y2="140" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+              <line x1="310" y1="148" x2="282" y2="145" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
+              <rect x="208" y="165" width="22" height="40" rx="11" fill="#f8fafc" />
+              <rect x="270" y="165" width="22" height="40" rx="11" fill="#f8fafc" />
+              <line x1="219" y1="192" x2="219" y2="200" stroke="#cbd5e1" strokeWidth="2" />
+              <line x1="281" y1="192" x2="281" y2="200" stroke="#cbd5e1" strokeWidth="2" />
+            </g>
 
-                    {/* Big 404 Text with Gradient */}
-                    <h1 className="text-8xl md:text-9xl font-black tracking-tighter bg-gradient-to-r from-blue-600 via-indigo-500 to-sky-400 bg-clip-text text-transparent drop-shadow-sm select-none">
-                        404
-                    </h1>
-                </div>
+            <path d="M370 380 L390 380 L385 410 L375 410 Z" fill="#1e293b" />
+            <path d="M380 380 C360 350 340 360 350 330 C370 340 380 360 380 380 Z" fill="#34d399" />
+            <path d="M380 380 C400 350 420 360 410 330 C390 340 380 360 380 380 Z" fill="#10b981" />
+            <circle cx="270" cy="390" r="22" fill="#6366f1" />
+            <path d="M250 390 C265 375 280 405 290 390" stroke="#818cf8" strokeWidth="3" fill="none" />
+            <path d="M270 368 C270 390 270 410 270 412" stroke="#818cf8" strokeWidth="2" fill="none" />
+            <path d="M248 392 Q200 410 140 395" stroke="#818cf8" strokeWidth="3" strokeLinecap="round" fill="none" />
+          </svg>
 
-                {/* Main Card Container */}
-                <div className="bg-card/90 backdrop-blur-xl border border-border/80 p-6 md:p-8 rounded-3xl shadow-2xl space-y-5">
-                    
-                    {/* Status Tag */}
-                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-800/50 text-blue-600 dark:text-blue-400 text-xs font-semibold">
-                        <AlertCircle className="w-4 h-4 shrink-0" />
-                        <span>Page Lost in Space</span>
-                    </div>
-
-                    {/* Heading & Subtitle */}
-                    <div className="space-y-2">
-                        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground">
-                            Oops! Page Not Found
-                        </h2>
-                        <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
-                            The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
-                        </p>
-                    </div>
-
-                    {/* Interactive Action Buttons */}
-                    <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
-                        <Button
-                            onClick={() => router.back()}
-                            variant="flat"
-                            className="w-full sm:w-auto font-semibold bg-secondary hover:bg-secondary/80 text-foreground h-11 px-6"
-                            radius="lg"
-                            startContent={<ArrowLeft className="w-4 h-4" />}
-                        >
-                            Go Back
-                        </Button>
-
-                        <Link href="/" className="w-full sm:w-auto">
-                            <Button
-                                color="primary"
-                                className="w-full font-semibold shadow-lg shadow-blue-500/25 bg-blue-600 hover:bg-blue-700 text-white h-11 px-6 transition-all"
-                                radius="lg"
-                                startContent={<Home className="w-4 h-4" />}
-                            >
-                                Back to Home
-                            </Button>
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Footer Subtle Text */}
-                <p className="text-xs text-muted-foreground/60 mt-6 font-medium">
-                    SkillSphere • Error Code: 404_PAGE_NOT_FOUND
-                </p>
-            </div>
         </div>
-    )
+
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-800 mb-2">
+          Page Not Found
+        </h2>
+        <p className="text-slate-500 text-xs sm:text-sm md:text-base max-w-xs sm:max-w-sm mb-6 sm:mb-8 leading-relaxed">
+          Sorry, the page you are looking for doesnt exist or has been moved to another location.
+        </p>
+
+        <Link href="/" className="w-full sm:w-auto">
+          <button className="w-full sm:w-auto min-w-[180px] sm:min-w-[200px] px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95 cursor-pointer">
+            Back to Home
+          </button>
+        </Link>
+
+        <p className="mt-8 sm:mt-10 text-[11px] sm:text-xs text-slate-400 font-medium">
+          SkillSphere • Error Code: 404
+        </p>
+
+      </section>
+
+    </div>
+  );
 }
