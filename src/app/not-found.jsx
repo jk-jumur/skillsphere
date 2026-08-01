@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-gradient-to-br from-[#dbeafe] via-[#e0e7ff] to-[#f3e8ff] font-sans select-none">
+    <div className="min-h-screen w-full flex items-center justify-center p-4 sm:p-6 relative overflow-hidden bg-linear-to-br from-[#dbeafe] via-[#e0e7ff] to-[#f3e8ff] font-sans select-none">
       
       {/* Background Soft Ambient Glows (Theme-1) */}
       <div className="absolute top-1/4 -left-20 w-72 h-72 sm:w-96 sm:h-96 bg-blue-300/40 rounded-full blur-[120px] pointer-events-none" />
@@ -75,7 +75,7 @@ export default function NotFound() {
         </p>
 
         <Link href="/" className="w-full sm:w-auto">
-          <button className="w-full sm:w-auto min-w-[180px] sm:min-w-[200px] px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95 cursor-pointer">
+          <button className="w-full sm:w-auto min-w-[180px] sm:min-w-[200px] px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl bg-linear-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold text-sm sm:text-base shadow-lg shadow-blue-500/25 transition-all duration-200 hover:scale-[1.03] active:scale-95 cursor-pointer">
             Back to Home
           </button>
         </Link>

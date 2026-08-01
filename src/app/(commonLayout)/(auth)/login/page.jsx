@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { Button, Card, Label } from "@heroui/react";
 import { 
@@ -21,6 +21,7 @@ export default function LoginPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const toggleVisibility = () => setIsVisible(!isVisible);
 
@@ -38,13 +39,20 @@ export default function LoginPage() {
       if (res?.error) {
         toast.error(res.error.message || "Invalid credentials!");
       } else {
-        toast.success("Welcome back! 👋 Logged in successfully.");
-        
-        // 2. Add a 500ms delay before redirecting so the user can see the toast message
-        setTimeout(() => {
-          router.push("/");
-          router.refresh();
-        }, 500);
+   toast.success("Welcome back! 👋 Logged in successfully.");
+
+const redirect = searchParams.get("redirect") || "/";
+
+// Prevent open redirect attacks
+const safeRedirect =
+  redirect.startsWith("/") && !redirect.startsWith("//")
+    ? redirect
+    : "/";
+
+setTimeout(() => {
+  router.replace(safeRedirect);
+  router.refresh();
+}, 500);
       }
     } catch (err) {
       toast.error(err?.message || "An unexpected error occurred.");
