@@ -168,8 +168,8 @@ Create a `.env.local` file in the project root:
 ```env
 # Application URL
 
-NEXT_PUBLIC_BASE_URL=https://skillsphere.vercel.app
-BETTER_AUTH_URL=https://skillsphere.vercel.app
+NEXT_PUBLIC_BASE_URL=https://skillsphere-psi-six.vercel.app
+BETTER_AUTH_URL=https://skillsphere-psi-six.vercel.app
 
 
 # MongoDB
