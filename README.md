@@ -33,7 +33,7 @@ The platform provides courses in areas like Web Development, Design, Marketing, 
 
 
 🌐 **Live Demo:**  
-https://skillsphere.vercel.app
+https://skillsphere-psi-six.vercel.app
 
 
 ---
